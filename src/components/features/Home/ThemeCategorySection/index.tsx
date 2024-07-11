@@ -10,7 +10,11 @@ import { breakpoints } from '@/styles/variants';
 import { ThemeCategoryItem } from './ThemeCategoryItem';
 
 export const ThemeCategorySection = () => {
-  const { themes } = useThemes();
+  const { themes, loading, error } = useThemes();
+  console.log('Themes:', themes);
+
+  if (loading) return <p>테마를 불러오는 중...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <Wrapper>
@@ -23,7 +27,7 @@ export const ThemeCategorySection = () => {
         >
           {' '}
           {themes.map((theme) => (
-            <Link key={theme.id} to={getDynamicPath.theme(theme.key)}>
+            <Link to={getDynamicPath.theme(theme.key)} key={theme.id}>
               <ThemeCategoryItem image={theme.imageURL} label={theme.label} />
             </Link>
           ))}
