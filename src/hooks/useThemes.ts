@@ -14,7 +14,7 @@ export const useThemes = () => {
     const fetchThemes = async () => {
       try {
         const response = await axios.get<ThemesResponse>(
-          'https://react-kakao-gift-mock-api.vercel.app/api/v1/themes',
+          'https://react-gift-mock-api-seorinnn.vercel.app/api/v1/themes',
         );
         setThemes(response.data.themes);
       } catch (err) {
