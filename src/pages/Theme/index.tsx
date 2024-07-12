@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { ThemeGoodsSection } from '@/components/features/Theme/ThemeGoodsSection';
 import { ThemeHeroSection } from '@/components/features/Theme/ThemeHeroSection';
 import { useThemes } from '@/hooks/useThemes';
-import { RouterPath } from '@/routes/path';
+//import { RouterPath } from '@/routes/path';
 import type { ThemeData } from '@/types';
 
 export const ThemePage = () => {
@@ -14,9 +14,13 @@ export const ThemePage = () => {
 
   useEffect(() => {
     if (themes.length > 0) {
+      console.log('themeKey:' + themeKey);
+      console.log('themes:' + themes);
       const theme = themes.find((t) => t.key === themeKey);
       setCurrentTheme(theme || null);
+      console.log('fount theme : ' + JSON.stringify(theme, null, 2));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [themeKey, themes]);
 
   // 로딩 중일 때 처리
@@ -24,9 +28,9 @@ export const ThemePage = () => {
     return <div>Loading...</div>;
   }
 
-  // 테마 데이터가 없는 경우 404 페이지로 이동
+  // 테마 데이터가 없는 경우
   if (!currentTheme) {
-    return <Navigate to={RouterPath.notFound} />;
+    return <div>해당 테마를 찾을 수 없습니다.</div>;
   }
 
   return (
