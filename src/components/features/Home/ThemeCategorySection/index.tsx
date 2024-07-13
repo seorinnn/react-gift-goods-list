@@ -14,12 +14,15 @@ export const ThemeCategorySection = () => {
   const { themes, loading, error } = useThemes();
   console.log('Themes:', themes);
 
+  //로딩중인 경우
   if (loading)
     return (
       <LoadingWrapper>
         <ClipLoader size={60} color={'#bdbdbd'} loading={loading} />
       </LoadingWrapper>
     );
+
+  //에러가 났을 경우
   if (error) return <p>{error}</p>;
 
   return (

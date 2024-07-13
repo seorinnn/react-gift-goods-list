@@ -14,6 +14,7 @@ type Props = {
 export const ThemeGoodsSection = ({ themeKey }: Props) => {
   const { products, isLoading, error } = useProducts(themeKey);
 
+  //로딩중인 경우
   if (isLoading) {
     return (
       <LoadingWrapper>
@@ -22,6 +23,7 @@ export const ThemeGoodsSection = ({ themeKey }: Props) => {
     );
   }
 
+  //에러가 났을 경우
   if (error) {
     return (
       <div>
@@ -31,6 +33,7 @@ export const ThemeGoodsSection = ({ themeKey }: Props) => {
     );
   }
 
+  //상품 데이터가 없을 경우
   if (products.length === 0) {
     return (
       <NoProductsWrapper>
