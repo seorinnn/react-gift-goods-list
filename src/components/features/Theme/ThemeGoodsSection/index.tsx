@@ -30,6 +30,14 @@ export const ThemeGoodsSection = ({ themeKey }: Props) => {
       </div>
     );
   }
+
+  if (products.length === 0) {
+    return (
+      <NoProductsWrapper>
+        <p>상품이 없어요.</p>
+      </NoProductsWrapper>
+    );
+  }
   return (
     <Wrapper>
       <Container>
@@ -69,4 +77,13 @@ const LoadingWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+`;
+
+const NoProductsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  font-size: 16px;
+  font-weight: bold;
 `;
