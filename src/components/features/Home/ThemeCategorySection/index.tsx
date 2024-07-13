@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
 
 import { Container } from '@/components/common/layouts/Container';
 import { Grid } from '@/components/common/layouts/Grid';
@@ -13,7 +14,12 @@ export const ThemeCategorySection = () => {
   const { themes, loading, error } = useThemes();
   console.log('Themes:', themes);
 
-  if (loading) return <p>테마를 불러오는 중...</p>;
+  if (loading)
+    return (
+      <LoadingWrapper>
+        <ClipLoader size={60} color={'#bdbdbd'} loading={loading} />
+      </LoadingWrapper>
+    );
   if (error) return <p>{error}</p>;
 
   return (
@@ -43,4 +49,11 @@ const Wrapper = styled.section`
   @media screen and (min-width: ${breakpoints.sm}) {
     padding: 45px 52px 23px;
   }
+`;
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
