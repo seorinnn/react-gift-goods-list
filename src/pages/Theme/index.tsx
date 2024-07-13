@@ -14,13 +14,9 @@ export const ThemePage = () => {
 
   useEffect(() => {
     if (themes.length > 0) {
-      console.log('themeKey:' + themeKey);
-      console.log('themes:' + themes);
       const theme = themes.find((t) => t.key === themeKey);
       setCurrentTheme(theme || null);
-      console.log('fount theme : ' + JSON.stringify(theme, null, 2));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [themeKey, themes]);
 
   // 로딩 중일 때 처리
