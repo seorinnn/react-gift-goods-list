@@ -28,7 +28,6 @@ export const ThemeGoodsSection = ({ themeKey }: Props) => {
     return (
       <ErrorWrapper>
         <p>{error.message}</p>
-        {error.statusCode && <p>Status Code: {error.statusCode}</p>}
       </ErrorWrapper>
     );
   }
