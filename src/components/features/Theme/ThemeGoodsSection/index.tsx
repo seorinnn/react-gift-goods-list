@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ClipLoader } from 'react-spinners';
 
 import { DefaultGoodsItems } from '@/components/common/GoodsItem/Default';
 import { Container } from '@/components/common/layouts/Container';
@@ -14,7 +15,11 @@ export const ThemeGoodsSection = ({ themeKey }: Props) => {
   const { products, isLoading, error } = useProducts(themeKey);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <LoadingWrapper>
+        <ClipLoader size={60} color={'#bdbdbd'} loading={isLoading} />
+      </LoadingWrapper>
+    );
   }
 
   if (error) {
@@ -57,4 +62,11 @@ const Wrapper = styled.section`
   @media screen and (min-width: ${breakpoints.sm}) {
     padding: 40px 16px 360px;
   }
+`;
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
