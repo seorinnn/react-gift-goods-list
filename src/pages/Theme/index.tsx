@@ -9,7 +9,7 @@ import type { ThemeData } from '@/types';
 
 export const ThemePage = () => {
   const { themeKey = '' } = useParams<{ themeKey: string }>();
-  const { themes, loading } = useThemes();
+  const { themes, isLoading } = useThemes();
   const [currentTheme, setCurrentTheme] = useState<ThemeData | null>(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export const ThemePage = () => {
   }, [themeKey, themes]);
 
   // 로딩 중일 때 처리
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 

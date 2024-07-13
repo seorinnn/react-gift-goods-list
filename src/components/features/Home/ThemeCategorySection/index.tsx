@@ -11,14 +11,14 @@ import { breakpoints } from '@/styles/variants';
 import { ThemeCategoryItem } from './ThemeCategoryItem';
 
 export const ThemeCategorySection = () => {
-  const { themes, loading, error } = useThemes();
+  const { themes, isLoading, error } = useThemes();
   console.log('Themes:', themes);
 
   //로딩중인 경우
-  if (loading)
+  if (isLoading)
     return (
       <LoadingWrapper>
-        <ClipLoader size={60} color={'#bdbdbd'} loading={loading} />
+        <ClipLoader size={60} color={'#bdbdbd'} loading={isLoading} />
       </LoadingWrapper>
     );
 
