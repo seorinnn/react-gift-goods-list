@@ -23,7 +23,12 @@ export const ThemeCategorySection = () => {
     );
 
   //에러가 났을 경우
-  if (error) return <p>{error}</p>;
+  if (error)
+    return (
+      <ErrorWrapper>
+        <p>{error.message}</p>
+      </ErrorWrapper>
+    );
 
   return (
     <Wrapper>
@@ -59,4 +64,13 @@ const LoadingWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+`;
+
+const ErrorWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  text-align: center;
 `;
