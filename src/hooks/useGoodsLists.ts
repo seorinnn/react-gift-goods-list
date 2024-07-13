@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 
 import type { GoodsData, RankingFilterOption } from '@/types';
 
-type UseGoodsRankingResponse = {
+type UseGoodsListsResponse = {
   goodsList: GoodsData[];
 };
 
-export const useGoodsRanking = (filterOption: RankingFilterOption): UseGoodsRankingResponse => {
+export const useGoodsLists = (filterOption: RankingFilterOption): UseGoodsListsResponse => {
   const [goodsList, setGoodsList] = useState<GoodsData[]>([]);
 
   useEffect(() => {

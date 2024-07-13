@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { Container } from '@/components/common/layouts/Container';
-import { useGoodsRanking } from '@/hooks/useGoodsRanking';
+import { useGoodsLists } from '@/hooks/useGoodsLists';
 import { breakpoints } from '@/styles/variants';
 import type { RankingFilterOption } from '@/types';
 
@@ -15,7 +15,7 @@ export const GoodsRankingSection = () => {
     rankType: 'MANY_WISH',
   });
 
-  const { goodsList } = useGoodsRanking(filterOption);
+  const { goodsList } = useGoodsLists(filterOption);
 
   return (
     <Wrapper>
