@@ -1,4 +1,5 @@
-import axios, { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 interface Product {
@@ -48,9 +49,19 @@ export const useProducts = (themeKey: string, maxResults: number = 20) => {
       } catch (err: unknown) {
         const axiosError = err as AxiosError<AxiosErrorResponse>;
         console.error('API 요청 실패:', axiosError);
+
+        let errorMessage = '상품 목록을 가져오는데 실패했습니다.';
+        const statusCode = axiosError.response?.status;
+
+        if (statusCode === 400 || statusCode === 404) {
+          errorMessage = '해당 테마에 대한 상품을 찾을 수 없습니다.';
+        } else if (statusCode === 500) {
+          errorMessage = '서버에 오류가 발생했습니다.';
+        }
+
         setError({
-          message: axiosError.response?.data?.message || '상품 목록을 가져오는데 실패했습니다.',
-          statusCode: axiosError.response?.status,
+          message: errorMessage,
+          statusCode: statusCode,
         });
         setIsLoading(false);
       }
