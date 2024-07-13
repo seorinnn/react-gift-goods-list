@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { ClipLoader } from 'react-spinners';
 
 import { Container } from '@/components/common/layouts/Container';
 import { useGoodsLists } from '@/hooks/useGoodsLists';
@@ -15,14 +16,28 @@ export const GoodsRankingSection = () => {
     rankType: 'MANY_WISH',
   });
 
-  const { goodsList } = useGoodsLists(filterOption);
+  const { goodsList, isLoading, error } = useGoodsLists(filterOption);
 
   return (
     <Wrapper>
       <Container>
         <Title>실시간 급상승 선물랭킹</Title>
         <GoodsRankingFilter filterOption={filterOption} onFilterOptionChange={setFilterOption} />
-        <GoodsRankingList goodsList={goodsList} />
+        {isLoading ? (
+          <LoadingWrapper>
+            <ClipLoader size={60} color={'#bdbdbd'} loading={isLoading} />
+          </LoadingWrapper>
+        ) : error ? (
+          <ErrorWrapper>
+            <p>{error.message}</p>
+          </ErrorWrapper>
+        ) : goodsList.length === 0 ? (
+          <NoProductsWrapper>
+            <p>보여줄 상품이 없어요!</p>
+          </NoProductsWrapper>
+        ) : (
+          <GoodsRankingList goodsList={goodsList} />
+        )}
       </Container>
     </Wrapper>
   );
@@ -49,4 +64,29 @@ const Title = styled.h2`
     font-size: 35px;
     line-height: 50px;
   }
+`;
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+`;
+
+const ErrorWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  text-align: center;
+`;
+
+const NoProductsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  font-size: 16px;
+  font-weight: bold;
 `;
