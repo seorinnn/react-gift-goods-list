@@ -70,6 +70,7 @@ const LoadingWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: 40vh;
 `;
 
@@ -78,6 +79,7 @@ const ErrorWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: 15vh;
   text-align: center;
 `;
@@ -86,6 +88,7 @@ const NoProductsWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: 15vh;
   font-size: 16px;
   font-weight: bold;
